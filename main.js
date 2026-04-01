@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 
-
+const dateNow = new Date().toLocaleString();
 const app = express();
 
 app.use(express.static('public'));
@@ -28,7 +28,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
 
 app.get("/api/files", (req, res) => {
 
-    try {
+  try {
 
     const fs = require("fs");
     fs.readdir("uploads/", (err, files) => {
@@ -37,15 +37,15 @@ app.get("/api/files", (req, res) => {
       }
       res.json({ files });
     });
-} catch (error) {
+  } catch (error) {
     res.status(404).json({ error: error.message });
-}
-});  
+  }
+});
 
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
 app.listen(3000, "0.0.0.0", () => {
-  console.log("Server running on port 3000");
+  console.log("Server running on port 3000 ", dateNow);
 });
