@@ -5,7 +5,7 @@ const path = require("path");
 
 const app = express();
 
-
+app.use(express.static('public'));
 // storage config
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
