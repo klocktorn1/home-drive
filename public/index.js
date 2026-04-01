@@ -5,14 +5,16 @@ async function refreshFileList() {
 
     try {
         const response = await fetch("/api/files")
-        const files = await response.json()
+        const filesObject = await response.json()
 
-        if (files.length === 0) {
+        if (filesObject.files.length === 0) {
             allUploadsContainer.innerHTML = "<p>No files uploaded yet</p>";
             return
         }
 
-        const listHtml = files.map((file) => {
+                
+
+        const listHtml = filesObject.files.map((file) => {
             return `
             <ul>
                 <li>
