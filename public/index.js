@@ -12,15 +12,16 @@ async function refreshFileList() {
             return
         }
 
-        const listHtml = files.map ((file) => {
-            `<ul>
+        const listHtml = files.map((file) => {
+            return `
+            <ul>
                 <li>
                     <p> 📄 ${file} </p>
                 </li>
             </ul>
             `
-        })
-        allUploadsContainer.innerHTML = listHtml.join("");
+        }).join("");
+        allUploadsContainer.innerHTML = listHtml;
     } catch(err) {
         console.error("Error fetching files:", err);
         allUploadsContainer.innerHTML = "<p>Error loading files</p>";
