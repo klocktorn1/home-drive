@@ -26,7 +26,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
   });
 });
 
-app.get("/files", (req, res) => {
+app.get("/api/files", (req, res) => {
 
     try {
 
