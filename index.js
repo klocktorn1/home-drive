@@ -26,10 +26,21 @@ app.post("/upload", upload.single("file"), (req, res) => {
   });
 });
 
+app.get("/files", (req, res) => {
+
+    const fs = require("fs");
+    fs.readdir("/uploads", (err, files) => {
+      if (err) {
+        return res.status(500).json({ error: "Unable to read files" });
+      }
+      res.json({ files });
+    });
+});  
+
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-app.listen(3000, () => {
+app.listen(3000, "0.0.0.0", () => {
   console.log("Server running on port 3000");
 });
