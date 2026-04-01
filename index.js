@@ -28,13 +28,18 @@ app.post("/upload", upload.single("file"), (req, res) => {
 
 app.get("/files", (req, res) => {
 
+    try {
+
     const fs = require("fs");
-    fs.readdir("/uploads", (err, files) => {
+    fs.readdir("uploads/", (err, files) => {
       if (err) {
         return res.status(500).json({ error: "Unable to read files" });
       }
       res.json({ files });
     });
+} catch (error) {
+    res.status(404).json({ error: error.message });
+}
 });  
 
 app.get("/", (req, res) => {
