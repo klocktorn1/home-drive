@@ -7,7 +7,7 @@ const fileRoutes = require("./routes/files");
 const dateNow = new Date().toLocaleString();
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "http://oneplus-8:5173" }));
 app.use(express.static('public'));
 app.use("/api", fileRoutes);
 
