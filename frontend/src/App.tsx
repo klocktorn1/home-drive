@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -13,7 +16,7 @@ function App() {
     const fetchFiles = async () => {
       try {
         setLoading(true)
-        const response = await fetch("http://localhost:3000/api/files")
+        const response = await fetch(`${API_URL}/api/files`)
         if (!response.ok) throw new Error("Failed to fetch files")
         const data = await response.json()
         setFiles(data.files ?? [])
@@ -33,7 +36,7 @@ function App() {
 
     try {
       setLoading(true)
-      const response = await fetch("http://localhost:3000/api/upload", {
+      const response = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         body: formData
       })
