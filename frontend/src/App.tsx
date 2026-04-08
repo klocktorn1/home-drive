@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Button from "./components/Button"
 
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
+
+const API_URL = "http://localhost:3000"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   const [files, setFiles] = useState<string[]>([])
   const [loading, setLoading] = useState<boolean>(false)
@@ -65,8 +66,10 @@ function App() {
       {error && <p>{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        <input type="file" onChange={(e) => {setSelectedFile(e.target.files?.[0] ?? null)}} />
-        <button>Upload</button>
+        <input type="file" onChange={(e) => { setSelectedFile(e.target.files?.[0] ?? null) }} />
+        <Button type="submit" disabled={loading}>
+          {loading ? "Uploading..." : "Upload"}
+        </Button>
       </form>
       <ul>
         {files.map((file, index) => (

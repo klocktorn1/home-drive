@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5173";
 
 
-app.use(cors({ origin: CORS_ORIGIN }));
+app.use(cors());
 app.use(express.static('public'));
 app.use("/api", fileRoutes);
 
